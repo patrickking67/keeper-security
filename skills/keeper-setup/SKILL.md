@@ -1,6 +1,6 @@
 ---
 name: keeper-setup
-description: Install and configure Keeper CLI tools (KSM CLI and Commander) for the Keeper Security agent kit. Use when the user needs to install keeper-secrets-manager-cli (ksm) or keepercommander (keeper), set up authentication, initialize profiles, configure persistent login, or troubleshoot Keeper CLI connectivity. Also use when the user says 'install keeper', 'setup keeper', 'configure keeper cli', or asks how to get started with Keeper's command line tools.
+description: Install and configure Keeper's CLI tools — KSM CLI (`ksm`) and Commander (`keeper`). Use for installing `keeper-secrets-manager-cli` or `keepercommander`, setting up authentication, initializing profiles, enabling persistent login, or troubleshooting Keeper CLI connectivity. Triggers include 'install keeper', 'setup keeper', 'configure keeper cli', or any first-time setup question for Keeper's command line tools.
 ---
 
 # Keeper CLI Setup & Configuration

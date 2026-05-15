@@ -30,7 +30,7 @@ Restart Claude Code. Use `/mcp` to confirm the `keeper-docs` server is connected
 For Cowork testing, rebuild the `.plugin` archive:
 
 ```bash
-zip -r /tmp/keeper.plugin . -x "*.DS_Store" -x ".git/*" -x ".social/build_social.py"
+zip -r /tmp/keeper.plugin . -x "*.DS_Store" -x ".git/*"
 ```
 
 Drop the resulting file into a Cowork chat.
@@ -52,8 +52,6 @@ Drop the resulting file into a Cowork chat.
 - [ ] If you changed a skill's frontmatter `description`, the new trigger phrases are tested by asking Claude something that should match
 - [ ] If you added a reference file, it's linked from the parent SKILL.md
 - [ ] No secrets, tokens, or real vault data anywhere in the diff
-- [ ] `python3 .social/build_social.py` still runs cleanly (only if you touched social assets)
-- [ ] CHANGELOG.md updated under `Unreleased`
 
 ## Review
 
@@ -62,7 +60,3 @@ Maintainer aims to respond within a week. PRs that touch skill behavior may be t
 ## Security
 
 Security reports go privately to the email in [SECURITY.md](SECURITY.md). Do **not** open a public issue for vulnerabilities.
-
-## Code of Conduct
-
-Contributors are expected to follow the [Code of Conduct](CODE_OF_CONDUCT.md).

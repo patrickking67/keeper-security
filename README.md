@@ -80,6 +80,9 @@ keeper-plugin/
 │   ├── keeper-admin/
 │   ├── keeper-secrets/
 │   └── keeper-setup/
+├── assets/
+├── CONTRIBUTING.md
+├── SECURITY.md
 ├── LICENSE
 └── README.md
 ```
