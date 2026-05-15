@@ -1,6 +1,6 @@
 ---
 name: keeper-admin
-description: Manage Keeper Vault, enterprise administration, PAM, and privileged access using Keeper Commander CLI (keeper). Use when the user needs to manage vault records interactively, run enterprise admin tasks (user/team/role management, SSO config, device approvals, compliance reporting), manage KSM Applications and Client Devices, configure password rotation, launch remote sessions (SSH, RDP, database), import/export data, or perform any administrative operation on Keeper. Also use when the user mentions 'keeper commander', 'keeper shell', 'keeper admin', asks about managing users/teams/roles/nodes in Keeper, needs to create KSM applications, or wants to automate Keeper admin tasks. If the user only needs to retrieve or inject secrets for an application, use the keeper-secrets skill instead.
+description: Manage Keeper Vault, enterprise administration, PAM, and privileged access via the Keeper Commander CLI (`keeper`). Use for vault record management, enterprise tasks (users, teams, roles, nodes, SSO, device approvals, compliance reporting), creating KSM Applications and Client Devices, password rotation, remote sessions (SSH/RDP/database), and vault import/export. Triggers include 'keeper commander', 'keeper shell', 'keeper admin', and any request to manage users, teams, roles, SSO, or PAM resources in Keeper. For retrieving or injecting secrets at application runtime, use the keeper-secrets skill instead.
 ---
 
 # Keeper Commander CLI (keeper)
@@ -35,7 +35,7 @@ breadth of vault, enterprise, and PAM operations.
 1. Python 3.10+
 2. Install: `pip install keepercommander`
 3. A Keeper account with appropriate admin permissions
-4. Tmux
+4. `tmux` (required for the interactive shell session pattern below)
 
 Check installation: `keeper version`
 
@@ -50,7 +50,7 @@ Check installation: `keeper version`
   - `ksm --help`
 4. Confirm session or auth state before any secret read.
 5. Check login status using whoami, if not logged in, complete login process and then continue rest flow.
-6. ALAWYS ask the user inputs for REQUIRED fields, DONT GUESS REQUIRED fields.
+6. ALWAYS ask the user for REQUIRED field values — never guess them.
 7. Search or inspect metadata first, then retrieve only the exact requested field, do not expose any sensitive data.
 8. Prefer secret injection or one-command environment scoping over writing secrets to disk.
 9. If syntax differs from expectation, fall back to `--help` and Keeper docs immediately.

@@ -6,9 +6,10 @@ Because this plugin bridges Claude with Keeper Security's CLI tooling and vault,
 
 | Version | Supported          |
 |---------|--------------------|
-| 0.1.x   | :white_check_mark: |
+| 1.1.x   | :white_check_mark: |
+| 0.1.x   | :x:                |
 
-Older pre-1.0 versions will not receive backported fixes — please upgrade.
+Older pre-1.1 versions will not receive backported fixes — please upgrade.
 
 ## Reporting a vulnerability
 
@@ -35,7 +36,6 @@ In scope:
 - Skill prompts in `skills/*/SKILL.md` and their `references/` files
 - MCP server configuration in `.mcp.json`
 - Plugin manifest in `.claude-plugin/plugin.json`
-- Build script in `.social/`
 - Any code in this repository
 
 Out of scope:
