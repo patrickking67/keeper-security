@@ -1,0 +1,22 @@
+{
+  "name": "keeper-admin",
+  "description": "Manage Keeper Vault, enterprise administration, PAM, and privileged access using Keeper Commander CLI (keeper).",
+  "version": "0.1.0",
+  "author": {
+    "name": "Patrick King",
+    "email": "patrick.king@barkrowsystems.com"
+  },
+  "license": "Apache-2.0",
+  "keywords": [
+    "admin",
+    "vault",
+    "pam",
+    "enterprise",
+    "keeper",
+    "commander",
+    "sso",
+    "rotation",
+    "privileged-access"
+  ],
+  "repository": "https://github.com/patrickking67/keeper-security"
+}

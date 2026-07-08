@@ -1,0 +1,101 @@
+{
+  "name": "keeper-security",
+  "owner": {
+    "name": "Patrick King",
+    "email": "patrick.king@barkrowsystems.com"
+  },
+  "metadata": {
+    "description": "Keeper Security marketplace - Keeper Admin, Keeper MSP, Keeper Secrets, and Keeper Setup plugins with skills, commands, agents, and the Keeper Docs MCP server",
+    "version": "0.1.0",
+    "homepage": "https://github.com/patrickking67/keeper-security",
+    "repository": "https://github.com/patrickking67/keeper-security",
+    "license": "Apache-2.0",
+    "support": {
+      "email": "patrick.king@barkrowsystems.com"
+    }
+  },
+  "plugins": [
+    {
+      "name": "keeper-admin",
+      "source": "./plugins/keeper-admin",
+      "description": "Manage Keeper Vault, enterprise administration, PAM, and privileged access using Keeper Commander CLI (keeper).",
+      "version": "0.1.0",
+      "author": {
+        "name": "Patrick King",
+        "email": "patrick.king@barkrowsystems.com"
+      },
+      "homepage": "https://github.com/patrickking67/keeper-security",
+      "repository": "https://github.com/patrickking67/keeper-security",
+      "license": "Apache-2.0",
+      "category": "development",
+      "keywords": [
+        "admin",
+        "vault",
+        "pam",
+        "enterprise",
+        "keeper"
+      ]
+    },
+    {
+      "name": "keeper-msp",
+      "source": "./plugins/keeper-msp",
+      "description": "Manage a Keeper MSP tenant using Keeper Commander CLI (keeper): managed companies, licenses and add-ons, MSP billing reports, switch-to-mc context switching, and distributor operations.",
+      "version": "0.1.0",
+      "author": {
+        "name": "Patrick King",
+        "email": "patrick.king@barkrowsystems.com"
+      },
+      "homepage": "https://github.com/patrickking67/keeper-security",
+      "repository": "https://github.com/patrickking67/keeper-security",
+      "license": "Apache-2.0",
+      "category": "development",
+      "keywords": [
+        "msp",
+        "managed-company",
+        "billing",
+        "licenses",
+        "keeper"
+      ]
+    },
+    {
+      "name": "keeper-secrets",
+      "source": "./plugins/keeper-secrets",
+      "description": "Retrieve, inject, and manage secrets from Keeper Vault using KSM CLI (ksm) for developer workflows, including ksm exec, interpolate, and Keeper notation.",
+      "version": "0.1.0",
+      "author": {
+        "name": "Patrick King",
+        "email": "patrick.king@barkrowsystems.com"
+      },
+      "homepage": "https://github.com/patrickking67/keeper-security",
+      "repository": "https://github.com/patrickking67/keeper-security",
+      "license": "Apache-2.0",
+      "category": "development",
+      "keywords": [
+        "secrets",
+        "vault",
+        "credentials",
+        "ksm",
+        "devops"
+      ]
+    },
+    {
+      "name": "keeper-setup",
+      "source": "./plugins/keeper-setup",
+      "description": "Install and configure Keeper CLI tools (KSM CLI and Commander) for the Keeper Security marketplace, including profiles and authentication.",
+      "version": "0.1.0",
+      "author": {
+        "name": "Patrick King",
+        "email": "patrick.king@barkrowsystems.com"
+      },
+      "homepage": "https://github.com/patrickking67/keeper-security",
+      "repository": "https://github.com/patrickking67/keeper-security",
+      "license": "Apache-2.0",
+      "category": "development",
+      "keywords": [
+        "setup",
+        "install",
+        "configuration"
+      ]
+    }
+  ]
+}

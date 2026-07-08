@@ -1,0 +1,27 @@
+version: "3"
+
+tasks:
+  default:
+    desc: List all tasks
+    cmds:
+      - task --list
+
+  fmt:
+    desc: Format Markdown
+    cmds:
+      - rumdl check --fix .
+
+  validate:
+    desc: Run full validation on plugins and marketplaces
+    cmds:
+      - ./scripts/validate-plugins.sh
+
+  mcp-check:
+    desc: Import-check the bundled Keeper MCP server
+    cmds:
+      - uv run python -c "import keeper_mcp.server"
+
+  mcpb:
+    desc: Pack the MCPB bundle (requires the mcpb CLI)
+    cmds:
+      - mcpb pack . keeper.mcpb

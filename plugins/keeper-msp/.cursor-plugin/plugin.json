@@ -1,0 +1,22 @@
+{
+  "name": "keeper-msp",
+  "version": "0.1.0",
+  "description": "Manage a Keeper MSP tenant using Keeper Commander CLI (keeper): managed companies, licenses and add-ons, MSP billing reports, switch-to-mc context switching, and distributor operations.",
+  "author": {
+    "name": "Patrick King",
+    "email": "patrick.king@barkrowsystems.com"
+  },
+  "license": "Apache-2.0",
+  "keywords": [
+    "msp",
+    "managed-company",
+    "keeper",
+    "commander",
+    "billing",
+    "licenses",
+    "distributor",
+    "multi-tenant"
+  ],
+  "repository": "https://github.com/patrickking67/keeper-security",
+  "logo": "assets/logo.png"
+}

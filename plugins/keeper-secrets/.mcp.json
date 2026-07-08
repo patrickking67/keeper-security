@@ -1,0 +1,8 @@
+{
+  "mcpServers": {
+    "keeper-docs": {
+      "type": "http",
+      "url": "https://docs.keeper.io/~gitbook/mcp"
+    }
+  }
+}

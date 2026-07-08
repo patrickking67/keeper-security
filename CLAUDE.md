@@ -1,13 +1,23 @@
-# keeper-mcp
+# keeper-security
 
 ## Overview
 
-Local stdio MCP server named `keeper` that exposes the Keeper Security vault and
-MSP/enterprise admin console. Thin wrapper: every tool shells out to the Keeper
-Commander CLI (`keeper`) non-interactively using a persistent-login config file, and
-returns captured output (JSON where Commander supports `--format=json`, table text
-otherwise). 14 tools: curated vault/enterprise/MSP/reporting tools plus a generic
-`keeper_run_command` escape hatch.
+One repo, two products:
+
+1. **Local stdio MCP server** named `keeper` that exposes the Keeper Security
+   vault and MSP/enterprise admin console. Thin wrapper: every tool shells out
+   to the Keeper Commander CLI (`keeper`) non-interactively using a
+   persistent-login config file, and returns captured output (JSON where
+   Commander supports `--format=json`, table text otherwise). 14+ tools:
+   curated vault/enterprise/MSP/reporting tools plus a generic
+   `keeper_run_command` escape hatch. Packaged as an MCPB bundle
+   (`manifest.json`, `keeper.mcpb`, `.mcpbignore`).
+2. **"Keeper Security" plugin marketplace** for Claude Code and Cursor
+   (`.claude-plugin/marketplace.json`, `.cursor-plugin/marketplace.json`,
+   marketplace name `keeper-security`) with four plugins under `plugins/`:
+   keeper-admin, keeper-msp, keeper-secrets, keeper-setup. Skills also work
+   with Codex/Copilot via the standard `skills/` layout (Vercel Skills CLI).
+   Content derived from Keeper's Apache-2.0 keeper-agent-kit and extended.
 
 ## Tech stack
 
@@ -15,6 +25,7 @@ otherwise). 14 tools: curated vault/enterprise/MSP/reporting tools plus a generi
 - `keepercommander` (>=17.3,<19) as a dependency so the `keeper` CLI ships in the venv
 - Packaging: pyproject.toml (hatchling), src layout, console script `keeper-mcp`
 - Environment management: uv (`uv sync`); plain venv + `pip install -e .` also works
+- Plugin validation: bash + jq (`scripts/validate-plugins.sh`, bash-3.2 compatible)
 
 ## Layout
 
@@ -22,21 +33,33 @@ otherwise). 14 tools: curated vault/enterprise/MSP/reporting tools plus a generi
 - `src/keeper_mcp/commander.py` - subprocess wrapper: config/binary/timeout resolution,
   one-shot and `--batch-mode` invocation, managed-company chaining
   (`switch-to-mc`/`switch-to-msp`), JSON extraction from noisy stdout, secret redaction
-- `README.md` - auth bootstrap runbook and client registration commands
+- `manifest.json` / `keeper.mcpb` / `.mcpbignore` - MCPB packaging (bundle excludes
+  the marketplace content)
+- `.claude-plugin/marketplace.json`, `.cursor-plugin/marketplace.json` - marketplaces
+  (must list exactly the plugins under `plugins/`)
+- `plugins/<name>/` - each has `.claude-plugin/plugin.json`,
+  `.cursor-plugin/plugin.json` (with `logo`), `.mcp.json` (bundles the
+  `keeper-docs` HTTP MCP server, `https://docs.keeper.io/~gitbook/mcp`),
+  `skills/<skill>/SKILL.md` (+ `references/`), optional `commands/` and `agents/`
+- `scripts/validate-plugins.sh` - full validation; run via `task validate`
+- `docs/mcp-server.md` - MCP server auth bootstrap runbook and client registration
+- `README.md` - marketplace + MCPB overview and install paths
 
 ## Build / run / verify
 
 ```bash
 uv sync                                        # create .venv and install
-uv run python -c "import keeper_mcp.server"    # import check
+uv run python -c "import keeper_mcp.server"    # import check (task mcp-check)
 uv run keeper-mcp                              # start the stdio server (Ctrl+C to stop)
+task validate                                  # plugin/marketplace validation
 ```
 
-There is no test suite yet; verify changes with the import check plus a JSON-RPC
-handshake (pipe `initialize` / `notifications/initialized` / `tools/list` lines into
-`.venv/bin/keeper-mcp`).
+There is no test suite yet; verify server changes with the import check plus a
+JSON-RPC handshake (pipe `initialize` / `notifications/initialized` /
+`tools/list` lines into `.venv/bin/keeper-mcp`). Verify plugin changes with
+`task validate` - it must pass with zero errors.
 
-## Conventions
+## Conventions (MCP server)
 
 - **stdio purity:** never print to stdout. Diagnostics go to stderr. Subprocess output
   is always captured (`capture_output=True`) and the child's stdin is `/dev/null` or an
@@ -61,6 +84,25 @@ handshake (pipe `initialize` / `notifications/initialized` / `tools/list` lines 
   `destructiveHint`.
 - Commander calls are serialized via a module lock (config file gets rewritten with
   rotated tokens on each login).
+
+## Conventions (plugins / marketplace)
+
+- SKILL.md frontmatter is single-line `name:` and `description:` (the validator
+  enforces this convention; folded `>` descriptions break trigger checks).
+- Fenced code blocks always declare a language (`text` for shell-transcript
+  style examples).
+- Skills/commands/agents never print secret values into transcripts; mutating
+  operations (rotate, msp-remove, share changes) always require explicit user
+  confirmation in their instructions.
+- Command syntax in skills must be verified against docs.keeper.io (each plugin
+  bundles the `keeper-docs` MCP server for this; endpoint
+  `https://docs.keeper.io/~gitbook/mcp`, tools `searchDocumentation`/`getPage`).
+- Claude and Cursor plugin manifests stay in sync (Cursor adds `logo`).
+- Adding a plugin: create `plugins/<name>/` with both manifests + `.mcp.json`,
+  add it to BOTH marketplace.json files, and extend
+  `scripts/validate-plugins.sh` (trigger keywords, section checks, references).
+- `scripts/validate-plugins.sh` must stay bash-3.2 compatible (no `mapfile`) -
+  macOS default bash runs it locally.
 
 ## Attribution rule
 
