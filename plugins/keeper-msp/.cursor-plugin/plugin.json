@@ -1,6 +1,7 @@
 {
   "name": "keeper-msp",
-  "version": "0.1.0",
+  "displayName": "Keeper MSP",
+  "version": "0.1.1",
   "description": "Manage a Keeper MSP tenant using Keeper Commander CLI (keeper): managed companies, licenses and add-ons, MSP billing reports, switch-to-mc context switching, and distributor operations.",
   "author": {
     "name": "Patrick King",
