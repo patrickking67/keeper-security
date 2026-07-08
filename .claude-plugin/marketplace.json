@@ -1,19 +1,20 @@
 {
   "name": "keeper-security",
+  "description": "Keeper Security - Keeper Admin, Keeper MSP, Keeper Secrets, and Keeper Setup plugins with skills, commands, agents, and the Keeper Docs MCP server",
   "owner": {
     "name": "Patrick King",
     "email": "patrick.king@barkrowsystems.com"
   },
   "metadata": {
-    "description": "Keeper Security marketplace - Keeper Admin, Keeper MSP, Keeper Secrets, and Keeper Setup plugins with skills, commands, agents, and the Keeper Docs MCP server",
-    "version": "0.1.0"
+    "description": "Keeper Security - Keeper Admin, Keeper MSP, Keeper Secrets, and Keeper Setup plugins with skills, commands, agents, and the Keeper Docs MCP server",
+    "version": "0.1.1"
   },
   "plugins": [
     {
       "name": "keeper-admin",
       "source": "./plugins/keeper-admin",
       "description": "Manage Keeper Vault, enterprise administration, PAM, and privileged access using Keeper Commander CLI (keeper).",
-      "version": "0.1.0",
+      "version": "0.1.1",
       "author": {
         "name": "Patrick King",
         "email": "patrick.king@barkrowsystems.com"
@@ -28,13 +29,14 @@
         "pam",
         "enterprise",
         "keeper"
-      ]
+      ],
+      "displayName": "Keeper Admin"
     },
     {
       "name": "keeper-msp",
       "source": "./plugins/keeper-msp",
       "description": "Manage a Keeper MSP tenant using Keeper Commander CLI (keeper): managed companies, licenses and add-ons, MSP billing reports, switch-to-mc context switching, and distributor operations.",
-      "version": "0.1.0",
+      "version": "0.1.1",
       "author": {
         "name": "Patrick King",
         "email": "patrick.king@barkrowsystems.com"
@@ -49,13 +51,14 @@
         "billing",
         "licenses",
         "keeper"
-      ]
+      ],
+      "displayName": "Keeper MSP"
     },
     {
       "name": "keeper-secrets",
       "source": "./plugins/keeper-secrets",
       "description": "Retrieve, inject, and manage secrets from Keeper Vault using KSM CLI (ksm) for developer workflows, including ksm exec, interpolate, and Keeper notation.",
-      "version": "0.1.0",
+      "version": "0.1.1",
       "author": {
         "name": "Patrick King",
         "email": "patrick.king@barkrowsystems.com"
@@ -70,13 +73,14 @@
         "credentials",
         "ksm",
         "devops"
-      ]
+      ],
+      "displayName": "Keeper Secrets"
     },
     {
       "name": "keeper-setup",
       "source": "./plugins/keeper-setup",
       "description": "Install and configure Keeper CLI tools (KSM CLI and Commander) for the Keeper Security marketplace, including profiles and authentication.",
-      "version": "0.1.0",
+      "version": "0.1.1",
       "author": {
         "name": "Patrick King",
         "email": "patrick.king@barkrowsystems.com"
@@ -89,7 +93,8 @@
         "setup",
         "install",
         "configuration"
-      ]
+      ],
+      "displayName": "Keeper Setup"
     }
   ]
 }

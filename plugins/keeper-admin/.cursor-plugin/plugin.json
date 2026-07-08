@@ -1,7 +1,8 @@
 {
   "name": "keeper-admin",
+  "displayName": "Keeper Admin",
   "description": "Manage Keeper Vault, enterprise administration, PAM, and privileged access using Keeper Commander CLI (keeper).",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "author": {
     "name": "Patrick King",
     "email": "patrick.king@barkrowsystems.com"

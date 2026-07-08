@@ -1,6 +1,7 @@
 {
   "name": "keeper-secrets",
-  "version": "0.1.0",
+  "displayName": "Keeper Secrets",
+  "version": "0.1.1",
   "description": "Retrieve, inject, and manage secrets from Keeper Vault using KSM CLI (ksm) for developer workflows, including ksm exec, interpolate, and Keeper notation.",
   "author": {
     "name": "Patrick King",
