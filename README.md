@@ -51,10 +51,10 @@ Skills per plugin:
 
 ```bash
 /plugin marketplace add patrickking67/keeper-security
-/plugin install keeper-admin@keeper-security
-/plugin install keeper-msp@keeper-security
-/plugin install keeper-secrets@keeper-security
-/plugin install keeper-setup@keeper-security
+/plugin install keeper-admin@Keeper-Security
+/plugin install keeper-msp@Keeper-Security
+/plugin install keeper-secrets@Keeper-Security
+/plugin install keeper-setup@Keeper-Security
 ```
 
 ### Any agent via Vercel Skills CLI (Claude Code, Cursor, Codex, Copilot)
