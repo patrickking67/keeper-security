@@ -1,0 +1,21 @@
+# Keep the MCPB bundle to the MCP server only - exclude marketplace content
+.git
+.venv
+.remember
+.claude-plugin
+.cursor-plugin
+plugins
+scripts
+docs
+assets/.DS_Store
+Taskfile.yaml
+TEST_PROMPTS.md
+.rumdl.toml
+CONTRIBUTING.md
+SECURITY.md
+CLAUDE.md
+keeper.mcpb
+.DS_Store
+.env.example
+uv.lock
+**/__pycache__

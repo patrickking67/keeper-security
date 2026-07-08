@@ -1,0 +1,181 @@
+{
+  "$schema": "https://raw.githubusercontent.com/anthropics/mcpb/main/schemas/mcpb-manifest-latest.schema.json",
+  "manifest_version": "0.4",
+  "name": "keeper",
+  "display_name": "Keeper Security",
+  "version": "0.1.0",
+  "description": "Local MCP server for the Keeper Security vault and MSP/enterprise admin console (via Keeper Commander).",
+  "long_description": "Search and read vault records, list folders and shared folders, browse enterprise nodes/users/teams/roles, run compliance, BreachWatch, security-audit and event reports, manage users (invite, lock/unlock, team and role membership, vault transfer), approve devices, and execute any Commander command. Wraps the Keeper Commander CLI, so it uses Keeper's zero-knowledge model and a one-time persistent-login bootstrap. macOS: launched via uv against a local Python environment. Requires a Keeper Commander persistent-login config.",
+  "author": {
+    "name": "Patrick King"
+  },
+  "icon": "assets/keeper-512.png",
+  "icons": [
+    {
+      "src": "assets/keeper-512.png",
+      "size": "512x512",
+      "theme": "dark"
+    }
+  ],
+  "server": {
+    "type": "python",
+    "entry_point": "src/keeper_mcp/server.py",
+    "mcp_config": {
+      "command": "/opt/homebrew/bin/uv",
+      "args": [
+        "run",
+        "--directory",
+        "${__dirname}",
+        "keeper-mcp"
+      ],
+      "env": {
+        "KEEPER_CONFIG_FILE": "${user_config.keeper_config_file}",
+        "KEEPER_COMMAND_TIMEOUT": "${user_config.keeper_command_timeout}"
+      }
+    }
+  },
+  "tools": [
+    {
+      "name": "keeper_search_records",
+      "description": "Search vault records by title/URL/notes."
+    },
+    {
+      "name": "keeper_get_record",
+      "description": "Get a record's detail (secrets gated)."
+    },
+    {
+      "name": "keeper_list_folders",
+      "description": "List vault folders."
+    },
+    {
+      "name": "keeper_enterprise_info",
+      "description": "Show enterprise tree (nodes/users/teams/roles)."
+    },
+    {
+      "name": "keeper_list_users",
+      "description": "List enterprise or managed-company users."
+    },
+    {
+      "name": "keeper_lock_user",
+      "description": "Lock a user account."
+    },
+    {
+      "name": "keeper_unlock_user",
+      "description": "Unlock a user account."
+    },
+    {
+      "name": "keeper_list_teams",
+      "description": "List teams."
+    },
+    {
+      "name": "keeper_security_audit",
+      "description": "Run the security audit report."
+    },
+    {
+      "name": "keeper_audit_report",
+      "description": "Run an advanced audit/event report."
+    },
+    {
+      "name": "keeper_msp_info",
+      "description": "Show MSP licenses and managed companies."
+    },
+    {
+      "name": "keeper_list_managed_companies",
+      "description": "List managed companies."
+    },
+    {
+      "name": "keeper_device_approve",
+      "description": "Approve pending SSO/enterprise devices."
+    },
+    {
+      "name": "keeper_list_roles",
+      "description": "List enterprise roles."
+    },
+    {
+      "name": "keeper_list_nodes",
+      "description": "List enterprise nodes (org tree)."
+    },
+    {
+      "name": "keeper_get_user",
+      "description": "Show one enterprise user's detail."
+    },
+    {
+      "name": "keeper_enterprise_role_info",
+      "description": "Show one role's policies and members."
+    },
+    {
+      "name": "keeper_list_shared_folders",
+      "description": "List shared folders and permissions."
+    },
+    {
+      "name": "keeper_compliance_report",
+      "description": "Run the compliance access report."
+    },
+    {
+      "name": "keeper_breachwatch_report",
+      "description": "Run the BreachWatch breached-credentials report."
+    },
+    {
+      "name": "keeper_create_user",
+      "description": "Invite a new enterprise user."
+    },
+    {
+      "name": "keeper_add_user_to_team",
+      "description": "Add a user to a team."
+    },
+    {
+      "name": "keeper_remove_user_from_team",
+      "description": "Remove a user from a team."
+    },
+    {
+      "name": "keeper_add_user_to_role",
+      "description": "Add a user to a role."
+    },
+    {
+      "name": "keeper_transfer_user",
+      "description": "Transfer a user's vault (offboarding)."
+    },
+    {
+      "name": "keeper_run_command",
+      "description": "Run any non-interactive Commander command (escape hatch)."
+    }
+  ],
+  "tools_generated": false,
+  "keywords": [
+    "keeper",
+    "vault",
+    "secrets",
+    "msp",
+    "commander",
+    "mcp"
+  ],
+  "license": "UNLICENSED",
+  "compatibility": {
+    "platforms": [
+      "darwin"
+    ],
+    "runtimes": {
+      "python": ">=3.11"
+    }
+  },
+  "user_config": {
+    "keeper_config_file": {
+      "type": "file",
+      "title": "Keeper Commander config file",
+      "description": "Path to the Commander persistent-login config created by the one-time bootstrap (see README). Defaults to ~/.keeper/config.json.",
+      "required": false,
+      "default": "${HOME}/.keeper/config.json"
+    },
+    "keeper_command_timeout": {
+      "type": "string",
+      "title": "Per-command timeout (seconds)",
+      "description": "Commander logs in and syncs on each call; large vaults may need more. Defaults to 120.",
+      "required": false,
+      "default": "120"
+    }
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/patrickking67/keeper-security"
+  }
+}
