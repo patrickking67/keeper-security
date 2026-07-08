@@ -14,7 +14,7 @@ One repo, two products:
    (`manifest.json`, `keeper.mcpb`, `.mcpbignore`).
 2. **"Keeper Security" plugin marketplace** for Claude Code and Cursor
    (`.claude-plugin/marketplace.json`, `.cursor-plugin/marketplace.json`,
-   marketplace name `keeper-security`) with four plugins under `plugins/`:
+   marketplace name `Keeper-Security`) with four plugins under `plugins/`:
    keeper-admin, keeper-msp, keeper-secrets, keeper-setup. Skills also work
    with Codex/Copilot via the standard `skills/` layout (Vercel Skills CLI).
    Content derived from Keeper's Apache-2.0 keeper-agent-kit and extended.

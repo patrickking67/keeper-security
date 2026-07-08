@@ -1,5 +1,5 @@
 {
-  "name": "keeper-security",
+  "name": "Keeper-Security",
   "description": "Keeper Security - Keeper Admin, Keeper MSP, Keeper Secrets, and Keeper Setup plugins with skills, commands, agents, and the Keeper Docs MCP server",
   "owner": {
     "name": "Patrick King",
