@@ -25,3 +25,6 @@ tests
 .pytest_cache
 .ruff_cache
 AGENTS.md
+.editorconfig
+.gitattributes
+.github
