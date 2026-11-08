@@ -44,15 +44,17 @@ device approvals, plus a generic command escape hatch.
 With uv:
 
 ```bash
-cd /Users/patrickking/Code/keeper-security
+git clone https://github.com/patrickking67/keeper-security.git
+cd keeper-security
 uv sync
 ```
 
 Without uv:
 
 ```bash
-cd /Users/patrickking/Code/keeper-security
-python3 -m venv .venv
+git clone https://github.com/patrickking67/keeper-security.git
+cd keeper-security
+python3.13 -m venv .venv   # 3.11-3.14; 3.15 lacks a cbor2 wheel
 .venv/bin/pip install -e .
 ```
 
@@ -139,19 +141,19 @@ The server never loads `.env` files - pass variables through the MCP client conf
 With uv:
 
 ```bash
-claude mcp add keeper -- uv run --directory /Users/patrickking/Code/keeper-security keeper-mcp
+claude mcp add keeper -- uv run --directory /path/to/keeper-security keeper-mcp
 ```
 
 Plain pip/python alternative (after the venv install above):
 
 ```bash
-claude mcp add keeper -- /Users/patrickking/Code/keeper-security/.venv/bin/keeper-mcp
+claude mcp add keeper -- /path/to/keeper-security/.venv/bin/keeper-mcp
 ```
 
 To point at a non-default config file, add `-e` flags before `--`:
 
 ```bash
-claude mcp add keeper -e KEEPER_CONFIG_FILE=$HOME/.keeper/config.json -- uv run --directory /Users/patrickking/Code/keeper-security keeper-mcp
+claude mcp add keeper -e KEEPER_CONFIG_FILE=$HOME/.keeper/config.json -- uv run --directory /path/to/keeper-security keeper-mcp
 ```
 
 ## Tools
@@ -171,6 +173,18 @@ claude mcp add keeper -e KEEPER_CONFIG_FILE=$HOME/.keeper/config.json -- uv run 
 | `keeper_msp_info()` | yes | MSP plans/licenses + managed-company table (`msp-info`, table text). |
 | `keeper_list_managed_companies()` | yes | Managed companies with their IDs (`msp-info` table); the ID column feeds `mc_id`. |
 | `keeper_device_approve(action, device, mc_id)` | list only | List/approve/deny pending cloud-SSO device approval requests. |
+| `keeper_list_roles(mc_id)` | yes | Enterprise roles as JSON (`enterprise-info --roles`). |
+| `keeper_list_nodes(mc_id)` | yes | Enterprise node tree as JSON (`enterprise-info --nodes`). |
+| `keeper_get_user(email, mc_id)` | yes | One user's detail (`enterprise-user <email> -v`, table text). |
+| `keeper_enterprise_role_info(role, mc_id)` | yes | One role's policies and members (`enterprise-role <role> -v`). |
+| `keeper_list_shared_folders()` | yes | Shared folders and default permissions as JSON (`list-sf`). |
+| `keeper_compliance_report(node, username, record, mc_id)` | yes | Compliance access report (`compliance report`, needs the add-on). |
+| `keeper_breachwatch_report(mc_id)` | yes | BreachWatch breached/weak/reused credential report. |
+| `keeper_create_user(email, node, mc_id)` | no | Invite a new enterprise user (no password is created). |
+| `keeper_add_user_to_team(email, team, mc_id)` | no | Add a user to a team. |
+| `keeper_remove_user_from_team(email, team, mc_id)` | no | Remove a user from a team. |
+| `keeper_add_user_to_role(email, role, mc_id)` | no | Add a user to a role. |
+| `keeper_transfer_user(email, target_user, confirm, mc_id)` | no, destructive | Move a user's whole vault to another user. Irreversible; refuses unless `confirm=true`. |
 | `keeper_run_command(command, mc_id)` | no | Escape hatch for the full Commander command set; destructive commands run as given; interactive commands and `logout` refused. |
 
 `mc_id` on a tool means it can run inside a managed company: the server wraps the
@@ -182,7 +196,11 @@ command in `switch-to-mc <id>` / `switch-to-msp` automatically.
   get plaintext credentials, and the tool description warns the model accordingly.
 - When creating records through `keeper_run_command`, use `password=$GEN` so Commander
   generates a policy-compliant password instead of putting plaintext in tool arguments.
-- The server never runs `logout`, `shell`, `login`, or `connect`.
+- The server never runs `logout`, `shell`, `login`, or `connect`, however the command is
+  prefixed or cased.
+- Any argument containing a line break or NUL is rejected before Commander starts.
+  Batch mode (used for `mc_id`) reads one command per line, so a line break would
+  otherwise run extra commands.
 - Keep `~/.keeper/config.json` at mode 600; it is equivalent to a logged-in device.
 - Commander invocations are serialized inside the server: concurrent processes would
   race on the config file, which Commander rewrites with rotated session tokens.
