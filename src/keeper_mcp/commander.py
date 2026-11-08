@@ -19,6 +19,21 @@ REDACTED_PLACEHOLDER = (
 
 _TRUNCATE_AT = 2000
 
+# Everything str.splitlines() treats as a line boundary, plus NUL.
+_LINE_BREAKS = (
+    "\n",
+    "\r",
+    "\x00",
+    "\x0b",
+    "\x0c",
+    "\x1c",
+    "\x1d",
+    "\x1e",
+    "\x85",
+    "\u2028",
+    "\u2029",
+)
+
 _EXIT_CODE_MEANINGS = {
     1: "general error",
     2: "authentication error",
@@ -109,6 +124,12 @@ def run_commands(commands: list[str]) -> str:
     """
     if not commands or not all(c.strip() for c in commands):
         raise CommanderError("No Commander command provided.")
+    if any(ch in c for c in commands for ch in _LINE_BREAKS):
+        # Batch mode reads one command per line, so an embedded line break
+        # would smuggle extra commands (for example 'logout') into the chain.
+        raise CommanderError(
+            "Commander commands and their arguments must not contain line breaks or NUL characters."
+        )
     cfg = config_path()
     if not cfg.is_file():
         raise CommanderError(

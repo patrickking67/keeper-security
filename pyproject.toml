@@ -8,9 +8,17 @@ version = "0.1.0"
 description = "Local MCP server exposing the Keeper Security vault and MSP/enterprise admin console via the Keeper Commander CLI"
 readme = "README.md"
 requires-python = ">=3.11"
+license = "Apache-2.0"
+license-files = ["LICENSE.md"]
 dependencies = [
     "fastmcp>=3.0,<4",
     "keepercommander>=17.3,<19",
+]
+
+[dependency-groups]
+dev = [
+    "pytest>=8.4",
+    "ruff>=0.15",
 ]
 
 [project.scripts]
@@ -18,3 +26,15 @@ keeper-mcp = "keeper_mcp.server:main"
 
 [tool.hatch.build.targets.wheel]
 packages = ["src/keeper_mcp"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py311"
+extend-exclude = [".worktrees", ".claude", "*.md"]
+
+[tool.ruff.lint]
+select = ["E", "F", "W", "I", "B", "UP"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-q -p no:anyio"

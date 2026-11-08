@@ -7,21 +7,24 @@ users or expose secret handling paths; please report problems responsibly.
 
 ## Supported versions
 
-Security fixes are applied to the default branch (`main`). Use the latest
-commit or tagged release when deploying these skills or the MCP server.
+| Version | Supported |
+| --- | --- |
+| `main` (latest commit) | yes |
+| older commits and tags | no |
+
+Security fixes land on `main`. Use the latest commit when deploying these skills
+or the MCP server.
 
 ## Reporting a vulnerability
 
 **Please do not** open a public GitHub issue for undisclosed security
 vulnerabilities.
 
-Instead:
+Report privately through GitHub:
+<https://github.com/patrickking67/keeper-security/security/advisories/new>
 
-1. **Email:** patrick.king@barkrowsystems.com for issues specific to this
-   repository (skill content, validation, the MCP server).
-2. **Keeper products:** vulnerabilities in Keeper Commander, KSM CLI, or the
-   Keeper platform itself should go to
-   [Keeper Security Support](https://keepersecurity.com/support) - not this repo.
+Vulnerabilities in Keeper Commander, KSM CLI, or the Keeper platform itself go
+to [Keeper Security Support](https://keepersecurity.com/support), not this repo.
 
 Include:
 
@@ -29,12 +32,24 @@ Include:
 - Steps to reproduce (if applicable)
 - Affected files or components (a specific skill, command, or server module)
 
+Never include real secrets, configs or tenant data in a report.
+
+## Response expectations
+
+- Acknowledgement within 7 days.
+- An initial assessment and plan within 14 days.
+- Fixes ship on `main` and are noted in CHANGELOG.md; credit is given in the
+  advisory unless you ask otherwise.
+
 ## Scope (in scope for this repo)
 
 - Misleading or unsafe examples in skills or reference docs
 - Instructions that could cause secrets to be exposed in logs or chat
 - MCP server code paths that could leak secret field values or auth material
 - Validation gaps that would let unsafe examples land
+- Ways around the server's gating: the `confirm=true` requirement on
+  `keeper_transfer_user`, the refused commands in `keeper_run_command`, or
+  secret redaction
 
 ## Out of scope
 

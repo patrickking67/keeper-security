@@ -6,6 +6,16 @@ tasks:
     cmds:
       - task --list
 
+  check:
+    desc: Run every check (lint, format, tests, manifest and plugin validation)
+    cmds:
+      - ./scripts/check.sh
+
+  test:
+    desc: Run the offline test suite
+    cmds:
+      - uv run pytest
+
   fmt:
     desc: Format Markdown
     cmds:

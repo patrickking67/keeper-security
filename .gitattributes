@@ -1,0 +1,12 @@
+* text=auto eol=lf
+
+*.sh text eol=lf
+*.png binary
+*.jpg binary
+*.ico binary
+*.pdf binary
+*.mcpb binary
+*.bundle binary
+*.zip binary
+
+uv.lock linguist-generated=true

@@ -1,5 +1,8 @@
 # keeper-security
 
+[![CI](https://github.com/patrickking67/keeper-security/actions/workflows/ci.yml/badge.svg)](https://github.com/patrickking67/keeper-security/actions/workflows/ci.yml)
+[![License: Apache-2.0](https://img.shields.io/badge/license-Apache--2.0-blue.svg)](LICENSE.md)
+
 Everything needed to give AI agents safe, first-class access to Keeper Security,
 in one repo:
 
@@ -42,7 +45,7 @@ Skills per plugin:
 - A Keeper Security account (MSP plugins need an MSP admin account)
 - KSM CLI (`ksm`) for keeper-secrets; Commander CLI (`keeper`) for
   keeper-admin / keeper-msp - the keeper-setup skill walks through installation
-- Python 3.10+ (3.11+ for the MCP server)
+- Python 3.10+ for the CLIs; 3.11 to 3.14 for the MCP server ([uv](https://docs.astral.sh/uv/) installs 3.13 for you)
 - Linux, macOS, or Windows
 
 ## Installation
@@ -83,17 +86,35 @@ cp -r plugins/*/skills/* ~/.claude/skills/
 
 ### MCP server (MCPB bundle)
 
-`manifest.json` + `keeper.mcpb` package the local Commander-backed MCP server
-for one-click install in Claude Desktop. Build with `task mcpb` (requires the
-`mcpb` CLI). Setup, authentication bootstrap, tool list, and security notes:
+`manifest.json` describes the MCPB bundle that packages the local
+Commander-backed MCP server for one-click install in Claude Desktop. Build
+`keeper.mcpb` with `task mcpb` (requires the `mcpb` CLI); the built file is
+gitignored, not committed. Setup, authentication bootstrap, tool list, and security notes:
 [docs/mcp-server.md](docs/mcp-server.md).
 
-## Validation
+## Architecture
+
+- `src/keeper_mcp/server.py` defines 26 FastMCP tools. Each builds a Commander
+  command line with `shlex.quote` on user input and calls `commander.py`.
+- `src/keeper_mcp/commander.py` runs `keeper --config=<file> "<command>"` (or a
+  `--batch-mode -` chain for managed companies) as a captured subprocess, so
+  Commander never touches the MCP stdio stream. It rejects multi-line input,
+  parses JSON out of noisy output, and redacts secret fields.
+- Read tools carry `readOnlyHint`; `keeper_transfer_user` needs `confirm=true`;
+  `keeper_run_command` refuses `shell`, `login`, `connect` and `logout`.
+- Plugins are plain Markdown skills, commands and agents plus manifests for
+  Claude Code (`.claude-plugin/`) and Cursor (`.cursor-plugin/`).
+
+## Development and tests
 
 ```bash
-task validate        # plugin/marketplace/skill validation (scripts/validate-plugins.sh)
-task mcp-check       # import-check the MCP server
+uv sync              # Python 3.13 (.python-version), runtime and dev deps
+scripts/check.sh     # ruff, offline pytest suite, plugin and manifest validation
 ```
+
+The test suite never runs Commander or contacts a Keeper tenant. CI runs
+`scripts/check.sh` on every push to `main` and every pull request. See
+[AGENTS.md](AGENTS.md) for every command and the safety rules.
 
 ## Documentation
 
@@ -102,6 +123,7 @@ task mcp-check       # import-check the MCP server
 - [Keeper notation](https://docs.keeper.io/en/keeperpam/secrets-manager/about/keeper-notation) - `keeper://` references
 - [MSP management commands](https://docs.keeper.io/keeperpam/commander-cli/command-reference/msp-management-commands)
 - [docs/mcp-server.md](docs/mcp-server.md) - the bundled MCP server
+- [CHANGELOG.md](CHANGELOG.md) - release notes
 
 ## Security
 
@@ -112,8 +134,8 @@ to keep secret values out of transcripts by design.
 ## Contributing
 
 Issues and pull requests welcome - see [CONTRIBUTING.md](CONTRIBUTING.md).
-Keep edits focused, run `task validate` before submitting, and describe how you
-tested.
+Keep edits focused, run `scripts/check.sh` before submitting, and describe how
+you tested.
 
 ## License
 

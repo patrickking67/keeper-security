@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import json
+import re
 import shlex
 from typing import Annotated, Literal
 
@@ -10,8 +11,7 @@ from fastmcp import FastMCP
 from fastmcp.exceptions import ToolError
 from pydantic import Field
 
-from keeper_mcp import commander
-from keeper_mcp import __version__
+from keeper_mcp import __version__, commander
 
 mcp = FastMCP(
     name="Keeper Security",
@@ -320,7 +320,9 @@ def keeper_device_approve(
     ] = "list",
     device: Annotated[
         str | None,
-        Field(description="User email or device ID to approve/deny. Required unless action='list'."),
+        Field(
+            description="User email or device ID to approve/deny. Required unless action='list'."
+        ),
     ] = None,
     mc_id: McId = None,
 ) -> str:
@@ -466,7 +468,9 @@ def keeper_create_user(
     node: Annotated[
         str | None,
         Field(
-            description="Optional node name or ID to place the user under; defaults to the root node."
+            description=(
+                "Optional node name or ID to place the user under; defaults to the root node."
+            )
         ),
     ] = None,
     mc_id: McId = None,
@@ -619,7 +623,7 @@ def keeper_run_command(
         str,
         Field(
             description=(
-                "Full Commander command line, e.g. \"user-report --days 30 --format json\". "
+                'Full Commander command line, e.g. "user-report --days 30 --format json". '
                 "Do not prefix with 'keeper'."
             )
         ),
@@ -627,8 +631,10 @@ def keeper_run_command(
     mc_id: McId = None,
 ) -> str:
     cleaned = command.strip()
-    if cleaned.lower().startswith("keeper "):
-        cleaned = cleaned[len("keeper ") :].strip()
+    # Drop a leading "keeper" word however it is separated (space, tab), so
+    # "keeper\tlogout" is checked as "logout" rather than slipping past the refusal list.
+    if re.match(r"keeper(\s|$)", cleaned, flags=re.IGNORECASE):
+        cleaned = cleaned[len("keeper") :].strip()
     if not cleaned:
         raise ToolError("command must not be empty.")
     try:

@@ -8,3 +8,8 @@ build/
 .env
 config.json
 .DS_Store
+
+# Build artifacts: rebuild with `task mcpb`; never commit them
+*.mcpb
+# Git bundles (legacy branch backups live in history, not the tree)
+*.bundle

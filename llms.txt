@@ -1,0 +1,29 @@
+# keeper-security
+
+> Safe AI agent access to Keeper Security: a Claude Code and Cursor plugin marketplace (keeper-admin, keeper-msp, keeper-secrets, keeper-setup) and keeper-mcp, a local stdio MCP server with 26 tools that wraps the Keeper Commander CLI, redacts secret fields by default, and gates irreversible actions behind explicit confirmation.
+
+## Start here
+
+- [README](https://github.com/patrickking67/keeper-security/blob/main/README.md): what the repo contains and how to install the marketplace, skills and MCP server
+- [MCP server guide](https://github.com/patrickking67/keeper-security/blob/main/docs/mcp-server.md): authentication bootstrap, environment variables, client registration, tool list, security notes
+- [AGENTS.md](https://github.com/patrickking67/keeper-security/blob/main/AGENTS.md): layout, commands, safety rules and conventions for contributors and coding agents
+
+## Plugins
+
+- [keeper-admin](https://github.com/patrickking67/keeper-security/tree/main/plugins/keeper-admin): vault records, enterprise admin, PAM sessions, rotation, compliance reports with Commander
+- [keeper-msp](https://github.com/patrickking67/keeper-security/tree/main/plugins/keeper-msp): managed companies, licenses, MSP billing, switch-to-mc
+- [keeper-secrets](https://github.com/patrickking67/keeper-security/tree/main/plugins/keeper-secrets): Keeper Secrets Manager CLI, ksm exec, Keeper notation
+- [keeper-setup](https://github.com/patrickking67/keeper-security/tree/main/plugins/keeper-setup): installing the CLIs and first-time profile setup
+- [Claude Code marketplace manifest](https://github.com/patrickking67/keeper-security/blob/main/.claude-plugin/marketplace.json)
+
+## Project
+
+- [SECURITY.md](https://github.com/patrickking67/keeper-security/blob/main/SECURITY.md): private vulnerability reporting and scope
+- [CONTRIBUTING.md](https://github.com/patrickking67/keeper-security/blob/main/CONTRIBUTING.md): setup, checks and pull request checklist
+- [CHANGELOG.md](https://github.com/patrickking67/keeper-security/blob/main/CHANGELOG.md): release notes
+- [License (Apache-2.0)](https://github.com/patrickking67/keeper-security/blob/main/LICENSE.md)
+
+## Optional
+
+- [Keeper Commander documentation](https://docs.keeper.io/en/keeperpam/commander-cli/overview)
+- [Keeper Secrets Manager documentation](https://docs.keeper.io/en/keeperpam/secrets-manager/overview)

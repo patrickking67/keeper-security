@@ -180,7 +180,7 @@ Create a new secret record.
 # Interactive editor
 ksm secret add editor --record-type login --title "New Secret"
 
-# From command-line fields (set password fields via interactive editor or secure input—not sample literals)
+# From command-line fields (set password fields via interactive editor or secure input, not sample literals)
 ksm secret add field --record-type login --title "API Key" \
   --field "login=user@example.com"
 
