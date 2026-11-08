@@ -28,3 +28,5 @@ AGENTS.md
 .editorconfig
 .gitattributes
 .github
+llms.txt
+CHANGELOG.md
