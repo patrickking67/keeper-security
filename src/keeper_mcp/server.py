@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import json
+import re
 import shlex
 from typing import Annotated, Literal
 
@@ -630,8 +631,10 @@ def keeper_run_command(
     mc_id: McId = None,
 ) -> str:
     cleaned = command.strip()
-    if cleaned.lower().startswith("keeper "):
-        cleaned = cleaned[len("keeper ") :].strip()
+    # Drop a leading "keeper" word however it is separated (space, tab), so
+    # "keeper\tlogout" is checked as "logout" rather than slipping past the refusal list.
+    if re.match(r"keeper(\s|$)", cleaned, flags=re.IGNORECASE):
+        cleaned = cleaned[len("keeper") :].strip()
     if not cleaned:
         raise ToolError("command must not be empty.")
     try:

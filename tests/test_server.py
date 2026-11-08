@@ -82,7 +82,15 @@ def test_transfer_user_with_confirm_runs_forced(fake_commander):
 
 @pytest.mark.parametrize(
     "command",
-    ["shell", "login user@example.com", "LOGOUT", "keeper logout", "  connect host  "],
+    [
+        "shell",
+        "login user@example.com",
+        "LOGOUT",
+        "keeper logout",
+        "keeper\tlogout",
+        "KEEPER   shell",
+        "  connect host  ",
+    ],
 )
 def test_run_command_refuses_interactive_and_logout(fake_commander, command):
     with pytest.raises(ToolError, match="Refusing to run"):
@@ -90,7 +98,7 @@ def test_run_command_refuses_interactive_and_logout(fake_commander, command):
     assert fake_commander.calls == []
 
 
-@pytest.mark.parametrize("command", ["", "'unterminated"])
+@pytest.mark.parametrize("command", ["", "keeper", "keeper ", "'unterminated"])
 def test_run_command_rejects_empty_or_unparseable(fake_commander, command):
     with pytest.raises(ToolError):
         call("keeper_run_command", {"command": command})
