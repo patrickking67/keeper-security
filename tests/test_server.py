@@ -148,3 +148,17 @@ def test_commander_errors_surface_as_tool_errors(fake_commander):
     fake_commander.returncode = 4
     with pytest.raises(ToolError, match="exit 4: not found"):
         call("keeper_get_user", {"email": "missing@example.com"})
+
+
+@pytest.mark.parametrize(
+    ("tool", "args"),
+    [
+        ("keeper_run_command", {"command": "tree\nlogout", "mc_id": 1}),
+        ("keeper_lock_user", {"email": "a@example.com\nlogout", "mc_id": 1}),
+        ("keeper_search_records", {"query": "x\rlogout"}),
+    ],
+)
+def test_tools_reject_multiline_input(fake_commander, tool, args):
+    with pytest.raises(ToolError, match="line breaks"):
+        call(tool, args)
+    assert fake_commander.calls == []

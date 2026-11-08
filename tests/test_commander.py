@@ -133,3 +133,12 @@ def test_scrub_secrets_masks_sensitive_fields():
     assert "hunter2" not in repr(scrubbed)
     # The input is not mutated.
     assert record["fields"][1]["value"] == ["hunter2"]
+
+
+@pytest.mark.parametrize("separator", ["\n", "\r", "\r\n", "\x00", " "])
+def test_line_breaks_cannot_smuggle_batch_commands(fake_commander, separator):
+    with pytest.raises(commander.CommanderError, match="line breaks"):
+        commander.run_command(f"tree{separator}logout", mc_id=1)
+    with pytest.raises(commander.CommanderError, match="line breaks"):
+        commander.run_command(f"tree{separator}logout")
+    assert fake_commander.calls == []
