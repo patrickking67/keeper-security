@@ -99,7 +99,7 @@ My Vault> add                  # Interactive mode
 My Vault> add --record-type login --title "New Login"
 My Vault> add --record-type login --title "API Key" \
   --field login=user@example.com
-# Add password and other sensitive fields interactively or via secure input—do not put secrets in example commands.
+# Add password and other sensitive fields interactively or via secure input; do not put secrets in example commands.
 My Vault> add --folder <FOLDER_UID> --record-type login
 ```
 
@@ -616,7 +616,7 @@ My Vault> secrets-manager client add --app <APP_UID> \
   --name "Production Web Server"
 # Note the One-Time Token displayed
 
-# On the server: initialize KSM CLI using KSM_CLI_TOKEN (see keeper-setup skill and Keeper profile init docs)—do not pass tokens on the command line.
+# On the server: initialize KSM CLI using KSM_CLI_TOKEN (see keeper-setup skill and Keeper profile init docs); do not pass tokens on the command line.
 ```
 
 ### Rotate Database Password

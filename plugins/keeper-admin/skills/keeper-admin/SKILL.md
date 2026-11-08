@@ -91,7 +91,7 @@ Kill the tmux session when the task is complete unless the user wants a persiste
 ## Authentication
 
 ```bash
-# Interactive login (preferred — credentials are not passed as CLI arguments)
+# Interactive login (preferred: credentials are not passed as CLI arguments)
 keeper shell
 # Prompts for email + master password + 2FA
 
@@ -105,7 +105,7 @@ My Vault> biometric register
 ```
 
 Do **not** pass master passwords, API tokens, or vault field values on the command
-line (e.g. `--password`), in URLs, or in generated scripts—they appear in process
+line (e.g. `--password`), in URLs, or in generated scripts; they appear in process
 listings and shell history. For automation, use interactive setup once, enable
 persistent device login where appropriate, or follow the official Commander CLI
 documentation for supported non-interactive patterns.
@@ -134,7 +134,7 @@ My Vault> get <RECORD_UID>        # Show full record details
 ```bash
 My Vault> record-add --record-type login --title "New Record" \
   --field login=admin
-# Set passwords and other sensitive fields via interactive prompts, or supply values only from the user’s secure input—never embed sample secrets in commands.
+# Set passwords and other sensitive fields via interactive prompts, or supply values only from the user’s secure input; never embed sample secrets in commands.
 
 My Vault> record-update -r <RECORD_UID>
 # Or non-interactive field updates for non-secret fields only, e.g. --field login=newuser
@@ -230,7 +230,7 @@ My Vault> secrets-manager share --app <APP_UID> --email admin2@company.com
 
 The One-Time Access Token output from `client add` is configured on the target
 machine using the **keeper-setup** skill (token via `KSM_CLI_TOKEN` or other
-supported secure methods—**not** as a literal `--token` argument in shared
+supported secure methods, **not** as a literal `--token` argument in shared
 examples or chat).
 
 ## KeeperPAM Operations

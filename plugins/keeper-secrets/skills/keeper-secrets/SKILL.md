@@ -85,7 +85,7 @@ by default when installed with keyring support.
 # Install with keyring support (recommended)
 pip install keeper-secrets-manager-cli[keyring]
 
-# Initialize with One-Time Access Token (set KSM_CLI_TOKEN in your shell first—see Keeper profile docs; do not pass --token with a literal value)
+# Initialize with One-Time Access Token (set KSM_CLI_TOKEN in your shell first; see Keeper profile docs; do not pass --token with a literal value)
 ksm profile init
 
 # For containers/CI (no keyring available)
