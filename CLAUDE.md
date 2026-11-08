@@ -11,7 +11,8 @@ One repo, two products:
    Commander supports `--format=json`, table text otherwise). 14+ tools:
    curated vault/enterprise/MSP/reporting tools plus a generic
    `keeper_run_command` escape hatch. Packaged as an MCPB bundle
-   (`manifest.json`, `keeper.mcpb`, `.mcpbignore`).
+   (`manifest.json` + `.mcpbignore`; `task mcpb` builds `keeper.mcpb`, which is
+   gitignored).
 2. **"Keeper Security" plugin marketplace** for Claude Code and Cursor
    (`.claude-plugin/marketplace.json`, `.cursor-plugin/marketplace.json`,
    marketplace name `Keeper-Security`) with four plugins under `plugins/`:
@@ -33,8 +34,8 @@ One repo, two products:
 - `src/keeper_mcp/commander.py` - subprocess wrapper: config/binary/timeout resolution,
   one-shot and `--batch-mode` invocation, managed-company chaining
   (`switch-to-mc`/`switch-to-msp`), JSON extraction from noisy stdout, secret redaction
-- `manifest.json` / `keeper.mcpb` / `.mcpbignore` - MCPB packaging (bundle excludes
-  the marketplace content)
+- `manifest.json` / `.mcpbignore` - MCPB packaging (bundle excludes the marketplace
+  content). `keeper.mcpb` is a build output: never commit it.
 - `.claude-plugin/marketplace.json`, `.cursor-plugin/marketplace.json` - marketplaces
   (must list exactly the plugins under `plugins/`)
 - `plugins/<name>/` - each has `.claude-plugin/plugin.json`,

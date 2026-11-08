@@ -14,7 +14,9 @@ TEST_PROMPTS.md
 CONTRIBUTING.md
 SECURITY.md
 CLAUDE.md
-keeper.mcpb
+*.mcpb
+*.bundle
+.worktrees
 .DS_Store
 .env.example
 uv.lock

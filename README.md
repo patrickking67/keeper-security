@@ -83,9 +83,10 @@ cp -r plugins/*/skills/* ~/.claude/skills/
 
 ### MCP server (MCPB bundle)
 
-`manifest.json` + `keeper.mcpb` package the local Commander-backed MCP server
-for one-click install in Claude Desktop. Build with `task mcpb` (requires the
-`mcpb` CLI). Setup, authentication bootstrap, tool list, and security notes:
+`manifest.json` describes the MCPB bundle that packages the local
+Commander-backed MCP server for one-click install in Claude Desktop. Build
+`keeper.mcpb` with `task mcpb` (requires the `mcpb` CLI); the built file is
+gitignored, not committed. Setup, authentication bootstrap, tool list, and security notes:
 [docs/mcp-server.md](docs/mcp-server.md).
 
 ## Validation
