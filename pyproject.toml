@@ -15,6 +15,7 @@ dependencies = [
 
 [dependency-groups]
 dev = [
+    "pytest>=8.4",
     "ruff>=0.15",
 ]
 
@@ -27,7 +28,11 @@ packages = ["src/keeper_mcp"]
 [tool.ruff]
 line-length = 100
 target-version = "py311"
-extend-exclude = [".worktrees", ".claude"]
+extend-exclude = [".worktrees", ".claude", "*.md"]
 
 [tool.ruff.lint]
 select = ["E", "F", "W", "I", "B", "UP"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-q"

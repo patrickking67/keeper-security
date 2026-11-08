@@ -21,3 +21,6 @@ CLAUDE.md
 .env.example
 uv.lock
 **/__pycache__
+tests
+.pytest_cache
+.ruff_cache
