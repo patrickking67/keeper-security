@@ -1,0 +1,43 @@
+name: Bug report
+description: Something in a plugin, skill or the MCP server does not work as documented.
+labels: ["bug"]
+body:
+  - type: markdown
+    attributes:
+      value: "Do not paste secrets, record contents, config files or real tenant data. Redact emails and IDs."
+  - type: dropdown
+    id: component
+    attributes:
+      label: Component
+      options:
+        - keeper-mcp server
+        - keeper-admin plugin
+        - keeper-msp plugin
+        - keeper-secrets plugin
+        - keeper-setup plugin
+        - Marketplace or install
+        - Docs
+    validations:
+      required: true
+  - type: textarea
+    id: what-happened
+    attributes:
+      label: What happened
+      description: What you did, what you expected, and what happened instead.
+    validations:
+      required: true
+  - type: textarea
+    id: reproduce
+    attributes:
+      label: Steps to reproduce
+      placeholder: "1. ...\n2. ..."
+  - type: input
+    id: versions
+    attributes:
+      label: Versions
+      description: "Agent client and version, Keeper Commander or KSM version, OS."
+  - type: textarea
+    id: logs
+    attributes:
+      label: Error output (redacted)
+      render: text
