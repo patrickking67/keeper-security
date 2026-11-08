@@ -8,6 +8,8 @@ version = "0.1.0"
 description = "Local MCP server exposing the Keeper Security vault and MSP/enterprise admin console via the Keeper Commander CLI"
 readme = "README.md"
 requires-python = ">=3.11"
+license = "Apache-2.0"
+license-files = ["LICENSE.md"]
 dependencies = [
     "fastmcp>=3.0,<4",
     "keepercommander>=17.3,<19",

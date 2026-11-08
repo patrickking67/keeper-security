@@ -47,3 +47,7 @@ def test_manifest_env_only_references_declared_user_config():
     for value in MANIFEST["server"]["mcp_config"].get("env", {}).values():
         if value.startswith("${user_config."):
             assert value[len("${user_config.") : -1] in declared
+
+
+def test_licenses_agree():
+    assert MANIFEST["license"] == PYPROJECT["project"]["license"] == "Apache-2.0"
