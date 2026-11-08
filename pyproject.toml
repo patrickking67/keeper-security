@@ -13,8 +13,21 @@ dependencies = [
     "keepercommander>=17.3,<19",
 ]
 
+[dependency-groups]
+dev = [
+    "ruff>=0.15",
+]
+
 [project.scripts]
 keeper-mcp = "keeper_mcp.server:main"
 
 [tool.hatch.build.targets.wheel]
 packages = ["src/keeper_mcp"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py311"
+extend-exclude = [".worktrees", ".claude"]
+
+[tool.ruff.lint]
+select = ["E", "F", "W", "I", "B", "UP"]
