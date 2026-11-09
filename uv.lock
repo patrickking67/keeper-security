@@ -1022,7 +1022,7 @@ wheels = [
 
 [[package]]
 name = "keepercommander"
-version = "18.0.7"
+version = "18.1.9"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "asciitree" },
@@ -1039,6 +1039,7 @@ dependencies = [
     { name = "keeper-pam-webrtc-rs" },
     { name = "keeper-secrets-manager-core" },
     { name = "keyring" },
+    { name = "packaging" },
     { name = "platformdirs" },
     { name = "prompt-toolkit" },
     { name = "protobuf" },
@@ -1059,9 +1060,9 @@ dependencies = [
     { name = "winrt-windows-security-credentials-ui", marker = "sys_platform == 'win32'" },
     { name = "zxcvbn" },
 ]
-sdist = { url = "https://files.pythonhosted.org/packages/0b/47/fc6693accfae4dc0cb8c11668d8bf15c2d8b5ed76738b34c0ef5cd58bfc8/keepercommander-18.0.7.tar.gz", hash = "sha256:90f422ae3edbd43921ce0e13d6d75aac1efa05229ec1b6636369317b4edab985", size = 2854717, upload-time = "2026-06-07T04:41:31.271Z" }
+sdist = { url = "https://files.pythonhosted.org/packages/94/86/1347d0651efe9d1c35a3dcdbb062afc564da29fd7c39c3589abff8de2953/keepercommander-18.1.9.tar.gz", hash = "sha256:56035328a540cbf8db3e0c884ee58e59a2e7182bcb917e20d08cc3f5f17e0c61", size = 3467334, upload-time = "2026-11-03T04:05:37.838Z" }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/fc/d8/4cddf1a12e8ac8d60cfccd43fba2b413189a02fb88c71faa728861472f15/keepercommander-18.0.7-py3-none-any.whl", hash = "sha256:2583a5701606a01ff0ed8a23cebefd479dd59b9107d8db64d010479770502829", size = 2763763, upload-time = "2026-06-07T04:41:29.018Z" },
+    { url = "https://files.pythonhosted.org/packages/e3/46/32f8546ab9fff6c49d322345e69a635491bdf64a3d567f187b5e10bce470/keepercommander-18.1.9-py3-none-any.whl", hash = "sha256:e3a2a5650c7c7df84390603cf7c3df8a158195a2a9b9b54a533ef42088f3d5a2", size = 3234939, upload-time = "2026-11-03T04:05:35.68Z" },
 ]
 
 [[package]]
