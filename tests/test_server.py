@@ -55,11 +55,11 @@ def list_tools():
 def test_tool_annotations_match_risk():
     tools = {tool.name: tool for tool in list_tools()}
     for name in READ_ONLY_TOOLS:
-        assert tools[name].annotations.readOnlyHint is True, name
+        assert tools[name].annotations.read_only_hint is True, name
     for name in DESTRUCTIVE_TOOLS:
-        assert tools[name].annotations.destructiveHint is True, name
+        assert tools[name].annotations.destructive_hint is True, name
     for name in set(tools) - READ_ONLY_TOOLS:
-        assert not tools[name].annotations.readOnlyHint, f"{name} writes but claims read-only"
+        assert not tools[name].annotations.read_only_hint, f"{name} writes but claims read-only"
 
 
 def test_transfer_user_requires_confirm(fake_commander):
