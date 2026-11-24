@@ -2,6 +2,8 @@
 
 > Safe AI agent access to Keeper Security: a Claude Code and Cursor plugin marketplace (keeper-admin, keeper-msp, keeper-secrets, keeper-setup) and keeper-mcp, a local stdio MCP server with 26 tools that wraps the Keeper Commander CLI, redacts secret fields by default, and gates irreversible actions behind explicit confirmation.
 
+Unofficial, not affiliated with or endorsed by Keeper Security.
+
 ## Start here
 
 - [README](https://github.com/patrickking67/keeper-security/blob/main/README.md): what the repo contains and how to install the marketplace, skills and MCP server

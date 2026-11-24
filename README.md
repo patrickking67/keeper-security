@@ -1,5 +1,7 @@
 # keeper-security
 
+> **Unofficial, not affiliated with or endorsed by Keeper Security.** Keeper is a trademark of Keeper Security, Inc., used here only to name the product these tools work with. This is an independent community project.
+
 [![CI](https://github.com/patrickking67/keeper-security/actions/workflows/ci.yml/badge.svg)](https://github.com/patrickking67/keeper-security/actions/workflows/ci.yml)
 [![License: Apache-2.0](https://img.shields.io/badge/license-Apache--2.0-blue.svg)](LICENSE.md)
 
