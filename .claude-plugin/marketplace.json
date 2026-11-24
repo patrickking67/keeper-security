@@ -1,12 +1,12 @@
 {
   "name": "Keeper-Security",
-  "description": "Keeper Security - Keeper Admin, Keeper MSP, Keeper Secrets, and Keeper Setup plugins with skills, commands, agents, and the Keeper Docs MCP server",
+  "description": "Unofficial community marketplace, not affiliated with or endorsed by Keeper Security. Keeper Admin, Keeper MSP, Keeper Secrets, and Keeper Setup plugins with skills, commands, agents, and the Keeper Docs MCP server",
   "owner": {
     "name": "Patrick King",
     "email": "89878544+patrickking67@users.noreply.github.com"
   },
   "metadata": {
-    "description": "Keeper Security - Keeper Admin, Keeper MSP, Keeper Secrets, and Keeper Setup plugins with skills, commands, agents, and the Keeper Docs MCP server",
+    "description": "Unofficial community marketplace, not affiliated with or endorsed by Keeper Security. Keeper Admin, Keeper MSP, Keeper Secrets, and Keeper Setup plugins with skills, commands, agents, and the Keeper Docs MCP server",
     "version": "0.1.1"
   },
   "plugins": [

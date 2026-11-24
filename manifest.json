@@ -4,7 +4,7 @@
   "name": "keeper",
   "display_name": "Keeper Security",
   "version": "0.1.0",
-  "description": "Local MCP server for the Keeper Security vault and MSP/enterprise admin console (via Keeper Commander).",
+  "description": "Unofficial local MCP server for the Keeper Security vault and MSP/enterprise admin console (via Keeper Commander). Not affiliated with or endorsed by Keeper Security.",
   "long_description": "Search and read vault records, list folders and shared folders, browse enterprise nodes/users/teams/roles, run compliance, BreachWatch, security-audit and event reports, manage users (invite, lock/unlock, team and role membership, vault transfer), approve devices, and execute any Commander command. Wraps the Keeper Commander CLI, so it uses Keeper's zero-knowledge model and a one-time persistent-login bootstrap. macOS: launched via uv against a local Python environment. Requires a Keeper Commander persistent-login config.",
   "author": {
     "name": "Patrick King"
