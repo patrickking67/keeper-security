@@ -126,6 +126,7 @@ The test suite never runs Commander or contacts a Keeper tenant. CI runs
 - [MSP management commands](https://docs.keeper.io/keeperpam/commander-cli/command-reference/msp-management-commands)
 - [docs/mcp-server.md](docs/mcp-server.md) - the bundled MCP server
 - [CHANGELOG.md](CHANGELOG.md) - release notes
+- [Project site](https://patrickking67.github.io/keeper-security/)
 
 ## Security
 

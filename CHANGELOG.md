@@ -21,6 +21,8 @@ carry their own versions.
 
 ### Added
 
+- GitHub Pages project site (`site/`) with a least-privilege deploy workflow.
+- An "unofficial, not affiliated with or endorsed by Keeper Security" notice in the README, server guide, llms.txt, MCPB manifest and both marketplace listings.
 - Offline pytest suite for the Commander wrapper, tool gating, redaction,
   manifest agreement and the stdio handshake.
 - `scripts/check.sh`, the single check command (ruff, pytest, plugin validation,
