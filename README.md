@@ -1,5 +1,7 @@
 # keeper-security
 
+> **Unofficial, not affiliated with or endorsed by Keeper Security.** Keeper is a trademark of Keeper Security, Inc., used here only to name the product these tools work with. This is an independent community project.
+
 [![CI](https://github.com/patrickking67/keeper-security/actions/workflows/ci.yml/badge.svg)](https://github.com/patrickking67/keeper-security/actions/workflows/ci.yml)
 [![License: Apache-2.0](https://img.shields.io/badge/license-Apache--2.0-blue.svg)](LICENSE.md)
 
@@ -124,6 +126,7 @@ The test suite never runs Commander or contacts a Keeper tenant. CI runs
 - [MSP management commands](https://docs.keeper.io/keeperpam/commander-cli/command-reference/msp-management-commands)
 - [docs/mcp-server.md](docs/mcp-server.md) - the bundled MCP server
 - [CHANGELOG.md](CHANGELOG.md) - release notes
+- [Project site](https://patrickking67.github.io/keeper-security/)
 
 ## Security
 

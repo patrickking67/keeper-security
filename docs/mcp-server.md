@@ -1,5 +1,7 @@
 # Keeper MCP server (keeper-mcp)
 
+Unofficial, not affiliated with or endorsed by Keeper Security.
+
 Local MCP server (stdio) named **keeper** that exposes the Keeper Security vault and
 MSP/enterprise admin console to MCP clients. It is a thin,
 non-interactive wrapper around the [Keeper Commander CLI](https://docs.keeper.io/en/keeperpam/commander-cli/overview):

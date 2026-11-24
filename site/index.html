@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>keeper-security - unofficial Keeper plugins for AI agents</title>
+<meta name="description" content="Unofficial, community-built Claude Code and Cursor plugin marketplace and local MCP server for Keeper Commander and Keeper Secrets Manager. Not affiliated with or endorsed by Keeper Security.">
+<meta property="og:title" content="keeper-security - unofficial Keeper plugins for AI agents">
+<meta property="og:description" content="Four plugins and a 26-tool local MCP server for Keeper Commander and KSM. Unofficial, not affiliated with Keeper Security.">
+<meta property="og:type" content="website">
+<meta name="color-scheme" content="light dark">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<style>
+:root{--bg:#fbfbfa;--fg:#1c1f24;--muted:#5b6370;--card:#fff;--line:#e3e5e8;--accent:#0b5fd6;--accent-fg:#fff;--code:#f1f2f4;--warn:#fff4d6;--warn-line:#e0b84c}
+@media (prefers-color-scheme:dark){:root{--bg:#0e1116;--fg:#e6e8eb;--muted:#9aa3af;--card:#161b22;--line:#2a313a;--accent:#58a6ff;--accent-fg:#0e1116;--code:#1c232c;--warn:#2b2412;--warn-line:#7a6320}}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--fg);font:16px/1.65 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
+a{color:var(--accent)}
+a:focus-visible,.btn:focus-visible{outline:3px solid var(--accent);outline-offset:3px}
+.wrap{max-width:62rem;margin:0 auto;padding:0 16px}
+.notice{background:var(--warn);border-bottom:1px solid var(--warn-line);padding:10px 0;font-size:.95rem}
+header{padding:56px 0 24px}
+h1{font-size:clamp(1.9rem,5.5vw,3rem);line-height:1.12;margin:0 0 16px;letter-spacing:-.02em}
+.lead{font-size:1.15rem;color:var(--muted);max-width:42rem;margin:0 0 24px}
+.btn{display:inline-block;background:var(--accent);color:var(--accent-fg);padding:12px 20px;border-radius:8px;text-decoration:none;font-weight:600;margin:0 8px 8px 0}
+.btn.alt{background:transparent;color:var(--accent);border:2px solid var(--accent);padding:10px 18px}
+section{padding:28px 0}
+h2{font-size:1.5rem;margin:0 0 16px}
+.grid{display:grid;gap:16px;grid-template-columns:repeat(auto-fit,minmax(14rem,1fr))}
+.card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px}
+.card h3{margin:0 0 4px;font-size:1.05rem;font-family:ui-monospace,SFMono-Regular,Menlo,monospace}
+.card p{margin:0;color:var(--muted);font-size:.95rem}
+pre{background:var(--code);border:1px solid var(--line);border-radius:10px;padding:16px;overflow-x:auto;font:14px/1.6 ui-monospace,SFMono-Regular,Menlo,monospace;margin:0 0 16px}
+code{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:.92em}
+ul.safe{padding-left:1.2rem}
+footer{border-top:1px solid var(--line);margin-top:24px;padding:24px 0 56px;color:var(--muted);font-size:.9rem}
+</style>
+</head>
+<body>
+<div class="notice"><div class="wrap"><strong>Unofficial, not affiliated with or endorsed by Keeper Security.</strong> Keeper is a trademark of Keeper Security, Inc.</div></div>
+<header class="wrap">
+  <h1>Keeper plugins for AI agents, with the guardrails left on.</h1>
+  <p class="lead">A Claude Code and Cursor plugin marketplace and a local MCP server that drive the Keeper Commander and Secrets Manager CLIs. Secrets are redacted by default and risky actions need explicit confirmation.</p>
+  <a class="btn" href="https://github.com/patrickking67/keeper-security#installation">Install</a>
+  <a class="btn alt" href="https://github.com/patrickking67/keeper-security">View on GitHub</a>
+</header>
+<main class="wrap">
+  <section aria-labelledby="plugins">
+    <h2 id="plugins">Four plugins</h2>
+    <div class="grid">
+      <div class="card"><h3>keeper-admin</h3><p>Vault records, enterprise admin, PAM sessions, rotation, compliance reports.</p></div>
+      <div class="card"><h3>keeper-msp</h3><p>Managed companies, licenses and add-ons, MSP billing reports.</p></div>
+      <div class="card"><h3>keeper-secrets</h3><p>Secrets Manager: <code>ksm exec</code>, templates, CI/CD, Keeper notation.</p></div>
+      <div class="card"><h3>keeper-setup</h3><p>Install the CLIs and set up profiles for the first time.</p></div>
+    </div>
+  </section>
+  <section aria-labelledby="start">
+    <h2 id="start">Quick start</h2>
+<pre><code>/plugin marketplace add patrickking67/keeper-security
+/plugin install keeper-admin@Keeper-Security</code></pre>
+    <p>For other agents, use the Skills CLI: <code>npx skills add patrickking67/keeper-security</code>.</p>
+  </section>
+  <section aria-labelledby="mcp">
+    <h2 id="mcp">Local MCP server</h2>
+    <p><code>keeper-mcp</code> is a stdio server with 26 tools. Each tool runs one Commander command as a captured subprocess and returns the output. It starts with no configuration and never prints to the MCP stream. It can be packaged as an MCPB bundle for Claude Desktop.</p>
+    <ul class="safe">
+      <li>Record secret fields are scrubbed unless <code>reveal_secrets</code> is set.</li>
+      <li>Moving a user's vault requires <code>confirm=true</code>.</li>
+      <li>The generic command tool refuses <code>shell</code>, <code>login</code>, <code>connect</code> and <code>logout</code>.</li>
+      <li>Line breaks and NUL bytes are rejected in every command, so nothing can be smuggled into a batch.</li>
+      <li>The test suite runs offline and never contacts a Keeper tenant.</li>
+    </ul>
+    <p><a href="https://github.com/patrickking67/keeper-security/blob/main/docs/mcp-server.md">Read the server guide</a></p>
+  </section>
+</main>
+<footer><div class="wrap">Plugin content is derived from the Apache-2.0 <a href="https://github.com/Keeper-Security/keeper-agent-kit">keeper-agent-kit</a>. This site is released under Apache-2.0 with the rest of the repo.</div></footer>
+</body>
+</html>
